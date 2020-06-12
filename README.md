@@ -25,6 +25,8 @@ The app provide few functionalities like
  * Any other delimiter other than -84 or tab is not parsed.
  
  * Edge case like if server is not delimited with proper char(above assumption), the data may not be displayed properly
+ 
+ * App is not tested with huge size of data. 
 
 
 ## Architecture:
