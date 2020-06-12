@@ -45,30 +45,31 @@ class HospitalDataSourceImpl(val application: Application) : HospitalDataSource 
         if(file.exists())
             return true
 
-        val response : Response<ResponseBody> = ApiClient.getClient.download()
-        if(response.isSuccessful){
-            try {
-                var bytes: ByteArray? = response.body()?.bytes()
-                if (bytes != null) {
-                    //there is some invalid char which is acting as delimiter
-                    //for each line in CSV, we will change this value to tab
-                    // tab will act as delimiter for both local and server
-                    //csv file
-                    for (i in bytes.indices) {
-                        if(bytes[i].toInt() == Constants.DELIMITER_FROM_SERVER)
-                            bytes[i] = '\t'.toByte()
+        try {
+            val response : Response<ResponseBody> = ApiClient.getClient.download()
+            if(response.isSuccessful){
+
+                    var bytes: ByteArray? = response.body()?.bytes()
+                    if (bytes != null) {
+                        //there is some invalid char which is acting as delimiter
+                        //for each line in CSV, we will change this value to tab
+                        // tab will act as delimiter for both local and server
+                        //csv file
+                        for (i in bytes.indices) {
+                            if(bytes[i].toInt() == Constants.DELIMITER_FROM_SERVER)
+                                bytes[i] = '\t'.toByte()
+                        }
+                        val outputStream =
+                            FileOutputStream(file)
+                        outputStream.write(bytes)
+                        outputStream.close()
+                        return true
                     }
-                    val outputStream =
-                        FileOutputStream(file)
-                    outputStream.write(bytes)
-                    outputStream.close()
-                    return true
                 }
-            }
-            catch (e: Exception){
-                e.printStackTrace()
-                return false
-            }
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+            return false
         }
         return false
     }
