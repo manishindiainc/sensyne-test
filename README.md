@@ -40,3 +40,6 @@ The app design has tried to follow **clean architecture**
   components like Preference helper etc. Most of the time it has provided implementation for Data layer.
             
 * **Domain:** Actual business logic layer, defines all the models.
+
+## Test
+* As of now only test cases have been added for HospitalDao
