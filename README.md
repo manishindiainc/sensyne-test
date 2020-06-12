@@ -23,6 +23,8 @@ The app provide few functionalities like
  * The delimiter from server is found to be some non ascii value (-84). We convert this value to "tab(\t)".
 
  * Any other delimiter other than -84 or tab is not parsed.
+ 
+ * Edge case like if server is not delimited with proper char(above assumption), the data may not be displayed properly
 
 
 ## Architecture:
