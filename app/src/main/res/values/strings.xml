@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Sensyne Test</string>
+    <string name="hospital_header_info">Hospital Info</string>
+    <string name="select_filter">Select Filter</string>
+    <string name="no_filter">No Filter</string>
+    <string name="filter_by_nhs">By NHS</string>
+
+    <string-array name="filter_list">
+        <item>@string/no_filter</item>
+        <item>@string/filter_by_nhs</item>
+    </string-array>
+
+</resources>
